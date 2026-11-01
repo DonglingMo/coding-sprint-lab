@@ -5,9 +5,9 @@
 ## 本月重点
 
 - **主线语言**：Java、Go。Java 负责订单与账本，Go 负责链上/事件监听。
-- **辅助语言**：Python、TypeScript。Python 负责对账与报表，TypeScript 负责管理台与接口联调。
+- **辅助语言**：Python、TypeScript、Rust、C、C++。Python 负责对账与报表，TypeScript 负责管理台与接口联调，Rust 负责安全并发，C/C++ 负责内存、编译与系统边界训练。
 - **基础能力**：SQL、Shell、Docker Compose、PostgreSQL、Redis、CI、日志与指标。
-- **可选探索**：Solidity，仅用于本地或测试网的模拟 ERC-20 事件。
+- **链与合约探索**：Solidity，仅用于本地或测试网的模拟 ERC-20 事件；不接触真实资金。
 - **每日投入**：约 2 小时：60 分钟语言训练，40 分钟 POC，20 分钟测试、Review 与记录。
 
 ## 30 天节奏
@@ -21,10 +21,10 @@
 | D1 | Java 集合与 LRU | 完成 practice/java/day-01-lru，补边界测试 |
 | D2 | Go map、接口与缓存 | 一个带过期策略的内存缓存及测试 |
 | D3 | Python CLI、文件与异常 | 可读取账单文件并输出摘要的 CLI |
-| D4 | JavaScript/TypeScript async、HTTP | 一个可调用 REST 接口的最小客户端 |
-| D5 | SQL 表设计、JOIN、索引 | ChainPay-Lab 订单、事件、账本基础 schema |
-| D6 | Shell 参数、退出码、日志 | setup-dev.sh、test-all.sh 的最小版本 |
-| D7 | 周复盘与模板整理 | 每种重点语言至少有一个可复制的模板和 README |
+| D4 | TypeScript async、HTTP + Rust ownership | REST 客户端和一个通过编译检查的 Rust 小练习 |
+| D5 | SQL schema + C 指针与内存 | ChainPay-Lab schema 和一个无泄漏的 C 小练习 |
+| D6 | Shell 自动化 + C++ RAII/线程 | setup-dev.sh、test-all.sh 和一个 C++20 小练习 |
+| D7 | Solidity Transfer 事件模拟 + 周复盘 | Java、Go、Python、TypeScript、Rust、C、C++、SQL、Shell、Solidity 均有入口模板和 README |
 
 ### Week 2（D8-D14）：并发、事件与数据一致性
 
@@ -35,6 +35,8 @@
 - D12：Python asyncio、批处理与失败重试。
 - D13：TypeScript Promise、并发请求、超时与错误边界。
 - D14：SQL 事务、唯一约束、索引和幂等键；完成一次周复盘。
+
+辅助语言穿插：Rust 练习所有权、trait 和 async；C 练习指针、内存布局和 CMake；C++ 练习 RAII、STL 和并发库；Solidity 练习事件、权限和测试网隔离。
 
 交付标准：每个并发练习都有成功、超时、重复执行和异常路径测试。
 
@@ -73,7 +75,7 @@
 
 ## 月末验收清单
 
-- [ ] Java、Go、Python、TypeScript、SQL、Shell 模板均可复制运行。
+- [ ] Java、Go、Python、TypeScript、Rust、C、C++、SQL、Shell 模板均可复制运行；Solidity 模拟合约可测试。
 - [ ] ChainPay-Lab 能在本地模拟数据上完成监听、订单、账本、对账闭环。
 - [ ] 每笔账务凭证借贷平衡，历史分录追加写，不直接修改。
 - [ ] 重复事件、乱序事件、超时、重试、重组和单边账均有测试。
