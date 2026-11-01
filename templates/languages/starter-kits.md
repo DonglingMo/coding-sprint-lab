@@ -97,6 +97,65 @@ echo "running checks"
 
 验证：shellcheck scripts/*.sh；bash -n scripts/*.sh
 
+## Rust：安全并发 / decoder
+
+~~~text
+Cargo.toml
+src/main.rs
+src/lib.rs
+tests/smoke.rs
+~~~
+
+~~~rust
+pub fn decode_event(input: &[u8]) -> Result<usize, &'static str> {
+    if input.is_empty() { return Err("empty event"); }
+    Ok(input.len())
+}
+~~~
+
+验证：cargo fmt --check；cargo test
+
+## C：内存与 ABI/FFI
+
+~~~text
+CMakeLists.txt
+src/main.c
+include/app.h
+tests/test_app.c
+~~~
+
+~~~c
+#include <stdio.h>
+
+int main(void) {
+    puts("c memory template");
+    return 0;
+}
+~~~
+
+验证：cmake -S . -B build；cmake --build build；ctest --test-dir build
+
+## C++：RAII / STL / 线程
+
+~~~text
+CMakeLists.txt
+src/main.cpp
+include/app.hpp
+tests/test_app.cpp
+~~~
+
+~~~cpp
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> samples{1, 2, 3};
+    std::cout << samples.size() << "\n";
+}
+~~~
+
+验证：cmake -S . -B build -DCMAKE_CXX_STANDARD=20；cmake --build build
+
 ## Solidity（可选）：模拟事件
 
 用 Foundry 建立 contracts/MockToken.sol，仅在本地 Anvil 或测试网运行；测试应覆盖重复 transfer 事件和非预期收款人。
