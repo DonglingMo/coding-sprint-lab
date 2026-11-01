@@ -1,6 +1,6 @@
 .PHONY: dev observability down logs health test
 
-COMPOSE := docker compose --env-file templates/infrastructure/.env -f templates/infrastructure/docker-compose.dev.yml
+COMPOSE := docker compose --env-file .env -f templates/infrastructure/docker-compose.dev.yml
 
 # 启动 PostgreSQL 和 Redis
 dev:
