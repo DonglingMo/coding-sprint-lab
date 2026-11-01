@@ -1,4 +1,5 @@
-# 30 天月度计划：Coding Sprint Lab + ChainPay-Lab
+# 2026 年 11 月计划（30 天）：Coding Sprint Lab + ChainPay-Lab
+> 周期：2026-11-01（周日）至 2026-11-30（周一），D1 = 11/01，D30 = 11/30。
 > 目标：用一个月建立可复用的多语言工程手感，并交付一个可运行、可测试、可演示的 ChainPay-Lab POC。
 > 本月 POC 只聚焦一个小模块：ChainPay-Lab Agent 只读对账助手；UTA、DEX、传统支付和其他业务只保留为后续 backlog。
 
@@ -11,9 +12,9 @@
 - **链与合约探索**：Solidity，仅用于本地或测试网的模拟 ERC-20 事件；不接触真实资金。
 - **每日投入**：约 2 小时：50 分钟语言训练，40 分钟 POC，20 分钟 Agent 实验或评估，10 分钟测试、Review 与记录；每天另完成 1 道 LeetCode（约 30-45 分钟，可计入语言训练）。
 
-## 30 天节奏
+## 30 天节奏（2026-11-01 至 2026-11-30）
 
-### Week 1（D1-D7）：语言基础、Agent 原型与开发模板
+### Week 1（D1-D7，11/01-11/07）：语言基础、Agent 原型与开发模板
 对应 Milestone：**Week 1：基础语言训练**
 
 | 天数 | 任务 | 当日交付 |
@@ -26,7 +27,7 @@
 | D6 | Shell 自动化 + C++ RAII/线程 | setup-dev.sh、test-all.sh 和一个 C++20 小练习 |
 | D7 | Solidity Transfer 事件模拟 + 周复盘 | 多语言入口模板、最小 Agent 骨架、工具协议说明和周复盘 |
 
-### Week 2（D8-D14）：并发、Agent 执行循环与数据一致性
+### Week 2（D8-D14，11/08-11/14）：并发、Agent 执行循环与数据一致性
 对应 Milestone：**Week 2-3：并发与业务工程**
 
 - D8-D9：Java Executor、并发容器、超时与取消；记录 Agent run 状态和取消原因。
@@ -39,7 +40,7 @@
 
 AI Agent 交付标准：工具白名单、输入/输出 schema、超时与重试策略、拒绝越权操作；每个并发练习都有成功、超时、重复执行和异常路径测试。
 
-### Week 3（D15-D21）：服务工程、Agent 网关与基建
+### Week 3（D15-D21，11/15-11/21）：服务工程、Agent 网关与基建
 对应 Milestone：**Week 2-3：并发与业务工程**
 
 - D15-D16：选择 Java 或 Go 作为主服务，完成 REST API、参数校验、统一错误响应和 Agent gateway 入口。
@@ -51,7 +52,7 @@ AI Agent 交付标准：工具白名单、输入/输出 schema、超时与重试
 
 交付标准：新环境只需复制 .env.example 并执行 make dev，即可启动依赖服务和 mock Agent；所有外部副作用默认关闭。
 
-### Week 4（D22-D30）：ChainPay-Lab Agent 只读对账助手
+### Week 4（D22-D30，11/22-11/30）：ChainPay-Lab Agent 只读对账助手
 对应 Milestone：**Week 4：POC 集成、测试和交付**
 
 - D22-D23：准备固定 mock 订单、账本、差错池和事件数据；定义 Agent 只读工具 schema。
@@ -63,7 +64,7 @@ AI Agent 交付标准：工具白名单、输入/输出 schema、超时与重试
 - D29：README、架构图、工具/API 示例、演示脚本与 Docker Compose 验收。
 - D30：全量测试、Agent 评估集 Review、月度复盘和下月 POC 候选。
 
-## 每日 LeetCode 练习（D1-D30）
+## 每日 LeetCode 练习（D1-D30，11/01-11/30）
 
 每天完成 1 道 LeetCode，建议 30-45 分钟：先独立思考，再编码、测试并记录题型、复杂度和一个可改进点。题目难度以 Easy/Medium 为主，和当天语言或 POC 主题关联。
 
