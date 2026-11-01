@@ -1,9 +1,11 @@
 # 30 天月度计划：Coding Sprint Lab + ChainPay-Lab
 > 目标：用一个月建立可复用的多语言工程手感，并交付一个可运行、可测试、可演示的 ChainPay-Lab POC。
+> 本月 POC 只聚焦一个小模块：ChainPay-Lab Agent 只读对账助手；UTA、DEX、传统支付和其他业务只保留为后续 backlog。
 
 ## 本月重点
 - **主线语言**：Java、Go。Java 负责订单与账本，Go 负责链上/事件监听。
 - **AI Agent 主线**：用 Python/TypeScript 实现受限工具调用、任务状态、上下文管理、结构化输出、权限控制、评估与可观测性；默认只读模拟数据，不接触真实资金。
+- **本月 POC 单模块**：只实现 Agent 只读对账助手，读取订单、账本和差错池并生成结构化建议；其他 POC 方向不在本月并行实现。
 - **辅助语言**：Python、TypeScript、Rust、C、C++。Python 负责对账、报表与 Agent 编排，TypeScript 负责管理台、工具适配与接口联调，Rust 负责安全并发，C/C++ 负责内存、编译与系统边界训练。
 - **基础能力**：SQL、Shell、Docker Compose、PostgreSQL、Redis、CI、日志与指标。
 - **链与合约探索**：Solidity，仅用于本地或测试网的模拟 ERC-20 事件；不接触真实资金。
@@ -49,17 +51,17 @@ AI Agent 交付标准：工具白名单、输入/输出 schema、超时与重试
 
 交付标准：新环境只需复制 .env.example 并执行 make dev，即可启动依赖服务和 mock Agent；所有外部副作用默认关闭。
 
-### Week 4（D22-D30）：ChainPay-Lab 集成、Agent 辅助、可靠性与交付
+### Week 4（D22-D30）：ChainPay-Lab Agent 只读对账助手
 对应 Milestone：**Week 4：POC 集成、测试和交付**
 
-- D22-D23：Go watcher 消费模拟区块事件，记录游标、确认数和原始事件；提供受限事件查询工具。
-- D24：Java Order/Ledger Service，将事件转成订单并完成借贷平衡的记账。
-- D25：Python 对账任务，输出差异报告和补偿建议；Agent 只能读取差异并生成结构化建议。
-- D26：TypeScript 管理台，展示订单、流水、差错池和 Agent run 历史。
-- D27：重复事件、乱序、超时、重试、重组、单边账、模型输出不合法和工具权限拒绝测试。
-- D28：日志、指标、Agent trace、成本/延迟记录、故障演练和数据恢复说明。
-- D29：README、架构图、API 示例、Agent 演示脚本与 Docker Compose 验收。
-- D30：全量测试、Agent 评估集 Review、月度复盘和下月 backlog。
+- D22-D23：准备固定 mock 订单、账本、差错池和事件数据；定义 Agent 只读工具 schema。
+- D24：实现 Agent 读取订单、账本和差错池，并输出结构化差异摘要。
+- D25：加入白名单、限额、超时、重试和人工确认边界；禁止写操作。
+- D26：管理台只展示 Agent run、输入摘要、工具调用、建议和审批状态。
+- D27：测试重复、乱序、超时、错误输出、上下文过长和权限拒绝。
+- D28：记录 run id、工具耗时、失败原因和评估结果，补充故障恢复说明。
+- D29：README、架构图、工具/API 示例、演示脚本与 Docker Compose 验收。
+- D30：全量测试、Agent 评估集 Review、月度复盘和下月 POC 候选。
 
 ## 每日 LeetCode 练习（D1-D30）
 
