@@ -11,10 +11,14 @@
 
 ## 启动
 
+从仓库根目录执行：
+
 ~~~bash
-cp .env.example .env
-make dev
-make health
+cp templates/infrastructure/.env.example .env
+make -f templates/infrastructure/Makefile dev
+make -f templates/infrastructure/Makefile health
+# 可选：启动 Prometheus 和 Grafana
+make -f templates/infrastructure/Makefile observability
 ~~~
 
 ## 约定
