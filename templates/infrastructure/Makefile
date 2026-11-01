@@ -3,7 +3,7 @@
 COMPOSE := docker compose --env-file templates/infrastructure/.env -f templates/infrastructure/docker-compose.dev.yml
 
 # 启动 PostgreSQL 和 Redis
- dev:
+dev:
 	$(COMPOSE) up -d postgres redis
 
 # 启动依赖和 Prometheus/Grafana
@@ -18,7 +18,6 @@ logs:
 
 health:
 	$(COMPOSE) ps
-	curl --fail http://localhost:5432 >/dev/null 2>&1 || true
 	redis-cli -h localhost ping
 
 test:
