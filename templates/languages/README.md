@@ -19,6 +19,9 @@
 | TypeScript | 管理台、REST 客户端、并发请求 | src/index.ts | npm test |
 | SQL | 订单、事件、账本、对账 schema | schema.sql | psql -f |
 | Shell | 环境检查、启动、全量测试 | bin/run.sh | shellcheck |
+| Rust | 安全并发、decoder、CLI | src/main.rs | cargo test |
+| C | 指针、内存、ABI/FFI 小实验 | src/main.c | cc -std=c17 |
+| C++ | RAII、STL、线程与性能实验 | src/main.cpp | cmake --build build |
 | Solidity（可选） | 本地/测试网模拟 ERC-20 事件 | contracts/MockToken.sol | forge test |
 
 ## 接入顺序
@@ -28,4 +31,4 @@
 3. 用 Python 生成对账输入，用 TypeScript 调用 API。
 4. 最后由 Shell 和基础设施模板统一启动、测试和观测。
 
-各语言的最小骨架、命令和替换点见同目录下的 README 文件。
+Rust、C、C++ 用于安全并发、内存模型、ABI/FFI 与性能边界训练，不进入账务主链；Solidity 只生成本地或测试网模拟事件。各语言的最小骨架、命令和替换点见同目录下的 README 文件。
