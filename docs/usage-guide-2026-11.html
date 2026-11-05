@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Coding Sprint Lab 2026 年 11 月项目使用指南与迭代约定">
+  <title>Coding Sprint Lab · 2026-11 使用指南</title>
+  <style>
+    :root {
+      --bg: #f3f6fb;
+      --panel: #fff;
+      --ink: #1d2735;
+      --muted: #5d6b7d;
+      --line: #dce4ee;
+      --brand: #2457d6;
+      --brand-soft: #e9efff;
+      --accent-soft: #e5f6f3;
+      --code: #172033;
+      --shadow: 0 16px 36px rgba(35, 54, 86, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--bg); font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    a { color: var(--brand); }
+    .shell { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+    .hero { padding: 58px 0 42px; color: #fff; background: radial-gradient(circle at 82% 12%, rgba(143,177,255,.34), transparent 28%), linear-gradient(135deg, #152b62, #2457d6 58%, #0f766e); }
+    .eyebrow { margin: 0 0 10px; color: #d8e4ff; font-size: .82rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    h1, h2, h3 { line-height: 1.25; }
+    h1 { max-width: 760px; margin: 0; font-size: clamp(2rem, 5vw, 3.65rem); }
+    h2 { margin: 0 0 18px; font-size: clamp(1.45rem, 3vw, 2rem); }
+    h3 { margin: 0 0 8px; font-size: 1.08rem; }
+    .hero p { max-width: 760px; margin: 18px 0 0; color: #e7edff; font-size: 1.08rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+    .chip { display: inline-flex; align-items: center; min-height: 32px; padding: 4px 12px; border: 1px solid rgba(255,255,255,.26); border-radius: 999px; color: #fff; background: rgba(255,255,255,.12); font-size: .88rem; }
+    .layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 28px; align-items: start; padding: 32px 0 64px; }
+    .toc { position: sticky; top: 20px; padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); box-shadow: var(--shadow); }
+    .toc strong { display: block; margin-bottom: 10px; }
+    .toc a { display: block; padding: 5px 0; color: var(--muted); text-decoration: none; font-size: .92rem; }
+    .toc a:hover { color: var(--brand); }
+    .content { min-width: 0; }
+    section { margin-bottom: 28px; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); box-shadow: var(--shadow); }
+    section > p:first-of-type { margin-top: 0; }
+    p { margin: 10px 0; }
+    .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: #fbfcfe; }
+    .card p { margin-bottom: 0; color: var(--muted); }
+    .card a { text-decoration: none; }
+    .callout { margin: 18px 0; padding: 16px 18px; border-left: 4px solid var(--brand); border-radius: 0 12px 12px 0; background: var(--brand-soft); }
+    .callout.green { border-left-color: #0f766e; background: var(--accent-soft); }
+    code, pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+    code { padding: .12em .35em; border-radius: 5px; color: #253b63; background: #edf1f7; font-size: .92em; }
+    pre { overflow-x: auto; margin: 16px 0 0; padding: 18px; border-radius: 12px; color: #e9efff; background: var(--code); font-size: .88rem; line-height: 1.7; }
+    .tree { white-space: pre; }
+    table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: .95rem; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--muted); background: #f8faff; font-size: .86rem; }
+    tr:last-child td { border-bottom: 0; }
+    ol, ul { padding-left: 1.35em; }
+    li + li { margin-top: 6px; }
+    .steps { counter-reset: step; display: grid; gap: 12px; padding: 0; list-style: none; }
+    .steps li { position: relative; min-height: 46px; padding: 8px 12px 8px 52px; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfe; }
+    .steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 13px; top: 9px; display: grid; width: 28px; height: 28px; place-items: center; border-radius: 50%; color: #fff; background: var(--brand); font-weight: 700; }
+    .checklist { list-style: none; padding-left: 0; }
+    .checklist li::before { content: "□"; display: inline-block; width: 1.5em; color: var(--brand); font-weight: 700; }
+    details { margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfe; }
+    summary { cursor: pointer; padding: 13px 16px; font-weight: 700; }
+    details > div { padding: 0 16px 16px; }
+    footer { padding: 0 0 42px; color: var(--muted); text-align: center; font-size: .9rem; }
+    @media (max-width: 820px) { .layout { grid-template-columns: 1fr; } .toc { position: static; } .grid { grid-template-columns: 1fr; } section { padding: 22px; } }
+    @media print { body { background: #fff; } .hero { padding: 28px 0; color: #000; background: #fff; border-bottom: 2px solid #000; } .hero p, .eyebrow, .chip { color: #000; } .chip { border-color: #999; } .layout { display: block; padding-top: 20px; } .toc { display: none; } section { box-shadow: none; break-inside: avoid; } a { color: #000; } }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="shell">
+      <p class="eyebrow">Coding Sprint Lab / Project Guide</p>
+      <h1>2026 年 11 月项目使用指南</h1>
+      <p>这份指南说明仓库如何组织、每天如何交付、月度周期如何归档，以及后续如何在保留历史记录的前提下继续迭代。</p>
+      <div class="chips" aria-label="项目标识">
+        <span class="chip">coding-sprint-lab-2026-11</span>
+        <span class="chip">周期 2026-11-01 至 2026-11-30</span>
+        <span class="chip">状态 active</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell layout">
+    <nav class="toc" aria-label="文档目录">
+      <strong>目录</strong>
+      <a href="#identity">项目身份</a>
+      <a href="#structure">仓库结构</a>
+      <a href="#daily">每日工作流</a>
+      <a href="#leetcode">LeetCode 规范</a>
+      <a href="#poc">POC 与模板</a>
+      <a href="#git">Git 管理</a>
+      <a href="#iteration">月度迭代</a>
+      <a href="#acceptance">验收清单</a>
+      <a href="#links">常用入口</a>
+    </nav>
+
+    <main class="content">
+      <section id="identity">
+        <h2>项目身份</h2>
+        <p>当前仓库的周期标识是 <code>coding-sprint-lab-2026-11</code>。机器可读的身份信息集中在 <a href="../project.yml"><code>project.yml</code></a>，其中 <code>cycle</code> 表示当前月份，<code>project_id</code> 表示项目与周期的组合，<code>plan</code> 指向本月计划。</p>
+        <div class="callout green"><strong>先看这三个文件。</strong> <a href="../project.yml">project.yml</a> 确认当前周期，<a href="monthly-plan-2026-11.md">monthly-plan-2026-11.md</a> 确认任务，<a href="../README.md">README.md</a> 确认项目入口和迭代命名。</div>
+        <div class="grid">
+          <div class="card"><h3>本月目标</h3><p>建立可复用的多语言工程手感，并交付 ChainPay-Lab Agent 只读对账助手的可运行、可测试、可演示 POC。</p></div>
+          <div class="card"><h3>默认边界</h3><p>Agent 默认读取模拟数据，外部副作用关闭。写操作需要明确的审批边界，Solidity 只用于本地或测试网的模拟事件。</p></div>
+        </div>
+      </section>
+
+      <section id="structure">
+        <h2>仓库结构</h2>
+        <p>顶层目录按职责划分。学习产物、POC、可复制模板和文档分别归档，避免把一次性实验混入长期复用的工程模板。</p>
+        <pre class="tree">coding-sprint-lab/
+├── project.yml                       # 当前项目与周期标识
+├── README.md                         # 项目入口与迭代规则
+├── docs/
+│   ├── usage-guide-2026-11.html     # 本使用指南
+│   ├── monthly-plan-2026-11.md       # 2026 年 11 月计划
+│   ├── architecture/                 # 架构图与设计说明
+│   ├── decisions/                    # 重要技术决策
+│   ├── roadmap/                      # 月度路线与复盘归档
+│   └── runbooks/                     # 操作手册与故障处理
+├── practice/
+│   ├── README.md                     # 练习组织规则
+│   ├── java/day-01-lru/              # 按语言和日期的专项练习
+│   └── leetcode/                     # 每日 LeetCode，多语言版本
+├── poc/chainpay-lab/                 # ChainPay-Lab POC
+├── templates/                        # 语言、基础设施和 Agent 模板
+├── scripts/                          # 可复用脚本入口
+└── .github/                          # Issue 与 CI 配置</pre>
+        <table>
+          <thead><tr><th>目录</th><th>放什么</th><th>维护方式</th></tr></thead>
+          <tbody>
+            <tr><td><code>practice/</code></td><td>每日语言练习、LeetCode 代码、测试和复盘</td><td>按语言和日期建立小目录，每题保持可运行</td></tr>
+            <tr><td><code>poc/</code></td><td>ChainPay-Lab 的业务实验、工具、评估集和演示</td><td>围绕当月 POC 范围演进，结束后保留可复现资料</td></tr>
+            <tr><td><code>templates/</code></td><td>可以复制到新项目的语言和基础设施骨架</td><td>只放通用内容，修改时同步更新使用说明</td></tr>
+            <tr><td><code>docs/</code></td><td>计划、架构、决策、运行手册和月度复盘</td><td>按周期归档，保留已完成月份的原始计划</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="daily">
+        <h2>每日工作流</h2>
+        <p>每天围绕一条小闭环推进。先确认当天目标，再完成代码、测试、记录和提交，确保第二天可以从仓库状态继续。</p>
+        <ol class="steps">
+          <li><strong>确认范围。</strong> 打开 <a href="monthly-plan-2026-11.md">月度计划</a>，定位当天的 D 编号、语言主题和 POC 交付物。</li>
+          <li><strong>建立目录。</strong> 语言练习使用 <code>practice/&lt;language&gt;/day-XX-topic/</code>，LeetCode 使用 <code>practice/leetcode/&lt;language&gt;/day-XX-slug/</code>。</li>
+          <li><strong>完成最小实现。</strong> 代码放在练习目录，配套 README、测试和必要的 notes，保持入口清晰。</li>
+          <li><strong>验证结果。</strong> 至少运行一个有意义的测试或验证命令，同时覆盖边界、错误和重复执行路径。</li>
+          <li><strong>记录复盘。</strong> 写下当天一个决策、一个问题和下一步动作。LeetCode 还要记录题型、复杂度、测试用例和改进点。</li>
+          <li><strong>提交变更。</strong> 使用 Conventional Commit，提交前运行 <code>git diff --check</code> 并确认 <code>git status</code> 中没有误加入的文件。</li>
+        </ol>
+        <div class="callout"><strong>时间分配参考。</strong> 每天约 2 小时，其中语言训练 50 分钟，POC 40 分钟，Agent 实验或评估 20 分钟，测试、Review 与记录 10 分钟，另安排 30 至 45 分钟完成一题 LeetCode。</div>
+      </section>
+
+      <section id="leetcode">
+        <h2>LeetCode 练习规范</h2>
+        <p>每日题解统一放在 <code>practice/leetcode/</code>。当前已经准备好六种语言目录，语言目录内部再按天和题目建立子目录。</p>
+        <div class="grid">
+          <div class="card"><h3><a href="../practice/leetcode/java/">Java</a></h3><p><code>practice/leetcode/java/day-01-two-sum/</code></p></div>
+          <div class="card"><h3><a href="../practice/leetcode/go/">Go</a></h3><p><code>practice/leetcode/go/day-01-two-sum/</code></p></div>
+          <div class="card"><h3><a href="../practice/leetcode/python/">Python</a></h3><p><code>practice/leetcode/python/day-01-two-sum/</code></p></div>
+          <div class="card"><h3><a href="../practice/leetcode/js/">JavaScript</a></h3><p><code>practice/leetcode/js/day-01-two-sum/</code></p></div>
+          <div class="card"><h3><a href="../practice/leetcode/rust/">Rust</a></h3><p><code>practice/leetcode/rust/day-01-two-sum/</code></p></div>
+          <div class="card"><h3><a href="../practice/leetcode/solidity/">Solidity</a></h3><p><code>practice/leetcode/solidity/day-01-two-sum/</code></p></div>
+        </div>
+        <table>
+          <thead><tr><th>文件或目录</th><th>用途</th></tr></thead>
+          <tbody>
+            <tr><td><code>README.md</code></td><td>题目链接、解法说明、边界条件和运行方式</td></tr>
+            <tr><td><code>src/</code> 或语言源文件</td><td>提交前可以独立运行的题解实现</td></tr>
+            <tr><td><code>test/</code> 或测试文件</td><td>正常输入、边界输入和至少一个回归用例</td></tr>
+            <tr><td><code>notes.md</code></td><td>复杂度、错误原因、复盘和可改进点</td></tr>
+          </tbody>
+        </table>
+        <p class="muted">题目目录建议使用稳定的英文 slug，例如 <code>day-01-two-sum</code>。同一题的多语言版本保持相同的日期和 slug，方便对比实现。</p>
+      </section>
+
+      <section id="poc">
+        <h2>POC 与模板管理</h2>
+        <div class="grid">
+          <div class="card"><h3>ChainPay-Lab POC</h3><p><a href="../poc/chainpay-lab/">poc/chainpay-lab/</a> 保存订单、账本、事件和 Agent 只读对账助手的实验。工具 schema、fixtures、评估集和观测资料各自放在对应子目录。</p></div>
+          <div class="card"><h3>可复用模板</h3><p><a href="../templates/">templates/</a> 保存语言和基础设施的起始骨架。模板应能被新项目复制，避免把本月 POC 的业务细节反向写入通用模板。</p></div>
+        </div>
+        <details>
+          <summary>Agent 任务的交付要求</summary>
+          <div>
+            <ul>
+              <li>声明工具白名单、输入和输出 schema。</li>
+              <li>记录超时、重试、重复执行和错误输出路径。</li>
+              <li>默认使用模拟数据，写操作保留人工审批边界。</li>
+              <li>保留 run id、工具耗时、失败原因和评估结果。</li>
+            </ul>
+          </div>
+        </details>
+      </section>
+
+      <section id="git">
+        <h2>Git 管理</h2>
+        <p>Git 用来记录小步可回溯的学习和工程增量。每次提交围绕一个清晰主题，提交消息遵循 Conventional Commits。</p>
+        <pre><code>git status
+git diff --check
+git add practice/leetcode/java/day-01-two-sum
+git commit -m "feat(java): add two sum solution"</code></pre>
+        <table>
+          <thead><tr><th>类型</th><th>适用场景</th><th>示例</th></tr></thead>
+          <tbody>
+            <tr><td><code>feat</code></td><td>新增练习、工具或 POC 能力</td><td><code>feat(go): add expiring cache</code></td></tr>
+            <tr><td><code>docs</code></td><td>更新计划、说明和复盘</td><td><code>docs(plan): update November checklist</code></td></tr>
+            <tr><td><code>test</code></td><td>补充测试和评估样例</td><td><code>test(agent): cover timeout path</code></td></tr>
+            <tr><td><code>chore</code></td><td>目录、模板和工具维护</td><td><code>chore: scaffold leetcode folders</code></td></tr>
+          </tbody>
+        </table>
+        <p class="muted">不要把 IDE 配置、密钥、真实资金凭证或未授权的外部写操作混入提交。提交前检查文件路径和差异内容。</p>
+      </section>
+
+      <section id="iteration">
+        <h2>月度迭代方法</h2>
+        <p>每个月保留一个独立的计划文件和一个明确的项目标识。这样可以从历史周期回看目标、交付和未完成项，也能避免覆盖上个月的计划。</p>
+        <ol class="steps">
+          <li><strong>复制文档。</strong> 将本月计划整理为 <code>docs/monthly-plan-YYYY-MM.md</code>，同步生成 <code>docs/usage-guide-YYYY-MM.html</code>，并保留旧月份文件。</li>
+          <li><strong>更新身份。</strong> 修改 <a href="../project.yml"><code>project.yml</code></a> 的 <code>cycle</code>、<code>project_id</code>、<code>status</code>、<code>plan</code> 和 <code>guide</code>。</li>
+          <li><strong>更新入口。</strong> 在 <a href="../README.md">README</a> 和 <a href="README.md">docs/README.md</a> 增加新月份的链接和目标。</li>
+          <li><strong>切换范围。</strong> 把上月未完成项转入 backlog，明确本月唯一的 POC 主线和不在范围内的方向。</li>
+          <li><strong>建立目录。</strong> 需要新的练习语言或 POC 子模块时，先补目录说明和最小模板，再开始写实现。</li>
+          <li><strong>月末归档。</strong> 完成全量验证和复盘后创建 Git 标签 <code>cycle-YYYY-MM</code>，并把下一月候选项记录到复盘文档。</li>
+        </ol>
+        <div class="callout"><strong>月份改变时只更新当前周期指针。</strong> 历史计划和指南文件保持原名。项目 ID 的固定格式是 <code>coding-sprint-lab-YYYY-MM</code>，计划文件的固定格式是 <code>monthly-plan-YYYY-MM.md</code>，指南文件的固定格式是 <code>usage-guide-YYYY-MM.html</code>。</div>
+      </section>
+
+      <section id="acceptance">
+        <h2>每日与月末验收</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>每日验收</h3>
+            <ul class="checklist">
+              <li>代码或配置已放入对应目录</li>
+              <li>至少一个测试或验证命令通过</li>
+              <li>记录一个决策、一个问题和下一步</li>
+              <li>LeetCode 题解包含复杂度和复盘</li>
+              <li>提交消息符合 Conventional Commits</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>月末验收</h3>
+            <ul class="checklist">
+              <li>主线语言和辅助语言模板可运行</li>
+              <li>POC 在模拟数据上完成闭环</li>
+              <li>Agent 评估覆盖成功、超时、重复和拒绝</li>
+              <li>本月 LeetCode 记录可复盘</li>
+              <li>未完成项已转入下月 backlog</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="links">
+        <h2>常用入口</h2>
+        <div class="grid">
+          <div class="card"><h3><a href="../project.yml">项目元数据</a></h3><p>确认当前周期和计划入口。</p></div>
+          <div class="card"><h3><a href="monthly-plan-2026-11.md">2026 年 11 月计划</a></h3><p>查看 D1 至 D30 的任务和验收标准。</p></div>
+          <div class="card"><h3><a href="../practice/README.md">练习规则</a></h3><p>查看语言练习和 LeetCode 目录约定。</p></div>
+          <div class="card"><h3><a href="../poc/chainpay-lab/README.md">ChainPay-Lab POC</a></h3><p>查看当前 POC 范围和模块说明。</p></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="shell">Coding Sprint Lab · 使用指南对应项目周期 coding-sprint-lab-2026-11</footer>
+</body>
+</html>
