@@ -91,7 +91,7 @@
       <a href="#identity">项目身份</a>
       <a href="#structure">仓库结构</a>
       <a href="#daily">每日工作流</a>
-      <a href="#leetcode">LeetCode 规范</a>
+      <a href="#language-basics">多语言语法练习</a>
       <a href="#poc">POC 与模板</a>
       <a href="#git">Git 管理</a>
       <a href="#iteration">月度迭代</a>
@@ -119,14 +119,16 @@
 ├── docs/
 │   ├── usage-guide-2026-11.html     # 本使用指南
 │   ├── monthly-plan-2026-11.md       # 2026 年 11 月计划
+│   ├── monthly-plan-2026-12.md       # 2026 年 12 月计划
 │   ├── architecture/                 # 架构图与设计说明
 │   ├── decisions/                    # 重要技术决策
 │   ├── roadmap/                      # 月度路线与复盘归档
 │   └── runbooks/                     # 操作手册与故障处理
 ├── practice/
 │   ├── README.md                     # 练习组织规则
-│   ├── java/day-01-lru/              # 按语言和日期的专项练习
-│   └── leetcode/                     # 每日 LeetCode，多语言版本
+│   ├── 2026-11/java/day-01-lru/      # 11 月 Java 专项练习
+│   ├── 2026-11/go/                   # 11 月 Go 专项练习
+│   └── language-basics/              # 共用多语言基础语法练习
 ├── poc/chainpay-lab/                 # ChainPay-Lab POC
 ├── templates/                        # 语言、基础设施和 Agent 模板
 ├── scripts/                          # 可复用脚本入口
@@ -134,7 +136,7 @@
         <table>
           <thead><tr><th>目录</th><th>放什么</th><th>维护方式</th></tr></thead>
           <tbody>
-            <tr><td><code>practice/</code></td><td>每日语言练习、LeetCode 代码、测试和复盘</td><td>按语言和日期建立小目录，每题保持可运行</td></tr>
+            <tr><td><code>practice/</code></td><td>语言练习、测试和复盘</td><td>按周期、语言和日期建立小目录，入口保持可运行</td></tr>
             <tr><td><code>poc/</code></td><td>ChainPay-Lab 的业务实验、工具、评估集和演示</td><td>围绕当月 POC 范围演进，结束后保留可复现资料</td></tr>
             <tr><td><code>templates/</code></td><td>可以复制到新项目的语言和基础设施骨架</td><td>只放通用内容，修改时同步更新使用说明</td></tr>
             <tr><td><code>docs/</code></td><td>计划、架构、决策、运行手册和月度复盘</td><td>按周期归档，保留已完成月份的原始计划</td></tr>
@@ -147,36 +149,29 @@
         <p>每天围绕一条小闭环推进。先确认当天目标，再完成代码、测试、记录和提交，确保第二天可以从仓库状态继续。</p>
         <ol class="steps">
           <li><strong>确认范围。</strong> 打开 <a href="monthly-plan-2026-11.md">月度计划</a>，定位当天的 D 编号、语言主题和 POC 交付物。</li>
-          <li><strong>建立目录。</strong> 语言练习使用 <code>practice/&lt;language&gt;/day-XX-topic/</code>，LeetCode 使用 <code>practice/leetcode/&lt;language&gt;/day-XX-slug/</code>。</li>
+          <li><strong>建立目录。</strong> 月度练习使用 <code>practice/YYYY-MM/&lt;language&gt;/</code>，共用语法练习使用 <code>practice/language-basics/&lt;language&gt;/</code>。</li>
           <li><strong>完成最小实现。</strong> 代码放在练习目录，配套 README、测试和必要的 notes，保持入口清晰。</li>
           <li><strong>验证结果。</strong> 至少运行一个有意义的测试或验证命令，同时覆盖边界、错误和重复执行路径。</li>
-          <li><strong>记录复盘。</strong> 写下当天一个决策、一个问题和下一步动作。LeetCode 还要记录题型、复杂度、测试用例和改进点。</li>
+          <li><strong>记录复盘。</strong> 写下当天一个决策、一个问题和下一步动作。数据结构练习只记录模板、复杂度和边界条件。</li>
           <li><strong>提交变更。</strong> 使用 Conventional Commit，提交前运行 <code>git diff --check</code> 并确认 <code>git status</code> 中没有误加入的文件。</li>
         </ol>
-        <div class="callout"><strong>时间分配参考。</strong> 每天约 2 小时，其中语言训练 50 分钟，POC 40 分钟，Agent 实验或评估 20 分钟，测试、Review 与记录 10 分钟，另安排 30 至 45 分钟完成一题 LeetCode。</div>
+        <div class="callout"><strong>时间分配参考。</strong> 每天约 2 小时，其中语言训练 50 分钟，POC 40 分钟，Agent 实验或评估 20 分钟，测试、Review 与记录 10 分钟。多语言语法练习从语言训练时段中抽取 20 至 30 分钟。</div>
       </section>
 
-      <section id="leetcode">
-        <h2>LeetCode 练习规范</h2>
-        <p>每日题解统一放在 <code>practice/leetcode/</code>。当前已经准备好六种语言目录，语言目录内部再按天和题目建立子目录。</p>
-        <div class="grid">
-          <div class="card"><h3><a href="../practice/leetcode/java/">Java</a></h3><p><code>practice/leetcode/java/day-01-two-sum/</code></p></div>
-          <div class="card"><h3><a href="../practice/leetcode/go/">Go</a></h3><p><code>practice/leetcode/go/day-01-two-sum/</code></p></div>
-          <div class="card"><h3><a href="../practice/leetcode/python/">Python</a></h3><p><code>practice/leetcode/python/day-01-two-sum/</code></p></div>
-          <div class="card"><h3><a href="../practice/leetcode/js/">JavaScript</a></h3><p><code>practice/leetcode/js/day-01-two-sum/</code></p></div>
-          <div class="card"><h3><a href="../practice/leetcode/rust/">Rust</a></h3><p><code>practice/leetcode/rust/day-01-two-sum/</code></p></div>
-          <div class="card"><h3><a href="../practice/leetcode/solidity/">Solidity</a></h3><p><code>practice/leetcode/solidity/day-01-two-sum/</code></p></div>
-        </div>
+      <section id="language-basics">
+        <h2>多语言基础语法练习</h2>
+        <p><a href="../practice/language-basics/">practice/language-basics/</a> 用同一个金额汇总问题练习变量、函数、条件、循环、集合和输出。每个入口都可以独立运行，适合在语言训练时段完成。</p>
         <table>
-          <thead><tr><th>文件或目录</th><th>用途</th></tr></thead>
+          <thead><tr><th>语言</th><th>入口</th><th>运行方式</th></tr></thead>
           <tbody>
-            <tr><td><code>README.md</code></td><td>题目链接、解法说明、边界条件和运行方式</td></tr>
-            <tr><td><code>src/</code> 或语言源文件</td><td>提交前可以独立运行的题解实现</td></tr>
-            <tr><td><code>test/</code> 或测试文件</td><td>正常输入、边界输入和至少一个回归用例</td></tr>
-            <tr><td><code>notes.md</code></td><td>复杂度、错误原因、复盘和可改进点</td></tr>
+            <tr><td>Java</td><td><code>java/Main.java</code></td><td><code>javac Main.java &amp;&amp; java Main</code></td></tr>
+            <tr><td>Go</td><td><code>go/main.go</code></td><td><code>go run main.go</code></td></tr>
+            <tr><td>Python</td><td><code>python/main.py</code></td><td><code>python3 main.py</code></td></tr>
+            <tr><td>JavaScript</td><td><code>javascript/main.js</code></td><td><code>node main.js</code></td></tr>
+            <tr><td>Rust、C、C++、SQL、Shell</td><td>各语言目录中的 <code>main.*</code></td><td>参见练习 README</td></tr>
           </tbody>
         </table>
-        <p class="muted">题目目录建议使用稳定的英文 slug，例如 <code>day-01-two-sum</code>。同一题的多语言版本保持相同的日期和 slug，方便对比实现。</p>
+        <p class="muted">IDE 负责编辑和调用工具链。运行前仍需安装对应的 JDK、编译器、解释器、SQLite 或 Node.js。LeetCode 题目和代码继续保存在 LeetCode，本项目只维护数据结构模板标记。</p>
       </section>
 
       <section id="poc">
@@ -203,15 +198,15 @@
         <p>Git 用来记录小步可回溯的学习和工程增量。每次提交围绕一个清晰主题，提交消息遵循 Conventional Commits。</p>
         <pre><code>git status
 git diff --check
-git add practice/leetcode/java/day-01-two-sum
-git commit -m "feat(java): add two sum solution"</code></pre>
+git add practice/language-basics/java/Main.java
+git commit -m "feat(java): add syntax exercise"</code></pre>
         <table>
           <thead><tr><th>类型</th><th>适用场景</th><th>示例</th></tr></thead>
           <tbody>
             <tr><td><code>feat</code></td><td>新增练习、工具或 POC 能力</td><td><code>feat(go): add expiring cache</code></td></tr>
             <tr><td><code>docs</code></td><td>更新计划、说明和复盘</td><td><code>docs(plan): update November checklist</code></td></tr>
             <tr><td><code>test</code></td><td>补充测试和评估样例</td><td><code>test(agent): cover timeout path</code></td></tr>
-            <tr><td><code>chore</code></td><td>目录、模板和工具维护</td><td><code>chore: scaffold leetcode folders</code></td></tr>
+            <tr><td><code>chore</code></td><td>目录、模板和工具维护</td><td><code>chore: update practice layout</code></td></tr>
           </tbody>
         </table>
         <p class="muted">不要把 IDE 配置、密钥、真实资金凭证或未授权的外部写操作混入提交。提交前检查文件路径和差异内容。</p>
@@ -240,7 +235,7 @@ git commit -m "feat(java): add two sum solution"</code></pre>
               <li>代码或配置已放入对应目录</li>
               <li>至少一个测试或验证命令通过</li>
               <li>记录一个决策、一个问题和下一步</li>
-              <li>LeetCode 题解包含复杂度和复盘</li>
+              <li>语法练习包含运行命令和边界输入</li>
               <li>提交消息符合 Conventional Commits</li>
             </ul>
           </div>
@@ -250,7 +245,7 @@ git commit -m "feat(java): add two sum solution"</code></pre>
               <li>主线语言和辅助语言模板可运行</li>
               <li>POC 在模拟数据上完成闭环</li>
               <li>Agent 评估覆盖成功、超时、重复和拒绝</li>
-              <li>本月 LeetCode 记录可复盘</li>
+              <li>数据结构模板标记已更新</li>
               <li>未完成项已转入下月 backlog</li>
             </ul>
           </div>
@@ -262,7 +257,7 @@ git commit -m "feat(java): add two sum solution"</code></pre>
         <div class="grid">
           <div class="card"><h3><a href="../project.yml">项目元数据</a></h3><p>确认当前周期和计划入口。</p></div>
           <div class="card"><h3><a href="monthly-plan-2026-11.md">2026 年 11 月计划</a></h3><p>查看 D1 至 D30 的任务和验收标准。</p></div>
-          <div class="card"><h3><a href="../practice/README.md">练习规则</a></h3><p>查看语言练习和 LeetCode 目录约定。</p></div>
+          <div class="card"><h3><a href="../practice/README.md">练习规则</a></h3><p>查看语言练习、语法练习和数据结构模板约定。</p></div>
           <div class="card"><h3><a href="../poc/chainpay-lab/README.md">ChainPay-Lab POC</a></h3><p>查看当前 POC 范围和模块说明。</p></div>
         </div>
       </section>

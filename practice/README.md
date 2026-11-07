@@ -1,5 +1,7 @@
 # Practice
 
-按语言和日期组织练习，例如 `java/day-01-lru/`。每次练习包含 README、源代码和测试。
+按月份、语言和日期组织练习，例如 `2026-11/java/day-01-lru/`。每次练习包含 README、源代码和测试。
 
-LeetCode 练习按语言放在 `leetcode/<language>/`，当前包含 Java、Go、Python、JavaScript、Rust 和 Solidity。每日题目可继续按 `day-01-two-sum/` 的格式建立子目录。
+共用的低成本语法练习放在 [`language-basics/`](language-basics/)，同一个小问题用多种语言实现。11 月的 Java、Go 练习放在 [`2026-11/`](2026-11/)，12 月的练习入口见 [`2026-12/`](2026-12/)。
+
+LeetCode 保留在个人平台中管理。本项目只维护数据结构主题模板和复盘标记，不复制题解代码或每日题目目录。仓库中的 LeetCode 练习目录已清理。

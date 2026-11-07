@@ -10,7 +10,7 @@
 - **辅助语言**：Python、TypeScript、Rust、C、C++。Python 负责对账、报表与 Agent 编排，TypeScript 负责管理台、工具适配与接口联调，Rust 负责安全并发，C/C++ 负责内存、编译与系统边界训练。
 - **基础能力**：SQL、Shell、Docker Compose、PostgreSQL、Redis、CI、日志与指标。
 - **链与合约探索**：Solidity，仅用于本地或测试网的模拟 ERC-20 事件；不接触真实资金。
-- **每日投入**：约 2 小时：50 分钟语言训练，40 分钟 POC，20 分钟 Agent 实验或评估，10 分钟测试、Review 与记录；每天另完成 1 道 LeetCode（约 30-45 分钟，可计入语言训练）。
+- **每日投入**：约 2 小时：50 分钟语言训练，40 分钟 POC，20 分钟 Agent 实验或评估，10 分钟测试、Review 与记录。多语言基础语法练习从语言训练时段中抽取 20 至 30 分钟，入口见 `practice/language-basics/`。
 
 ## 30 天节奏（2026-11-01 至 2026-11-30）
 
@@ -19,8 +19,8 @@
 
 | 天数 | 任务 | 当日交付 |
 | --- | --- | --- |
-| D1 | Java 集合与 LRU | 完成 practice/java/day-01-lru，补边界测试 |
-| D2 | Go map、接口与缓存 | 一个带过期策略的内存缓存及测试 |
+| D1 | Java 集合与 LRU | 完成 practice/2026-11/java/day-01-lru，补边界测试 |
+| D2 | Go map、接口与缓存 | 一个带过期策略的内存缓存及测试，放在 practice/2026-11/go/ |
 | D3 | Python CLI、结构化输出与 Agent 基础 | 可读取账单文件并输出摘要的 CLI，以及一个确定性只读工具 |
 | D4 | TypeScript async、HTTP、Agent tool adapter + Rust ownership | 类型安全的工具适配器、REST 客户端和一个通过编译检查的 Rust 小练习 |
 | D5 | SQL schema + C 指针与内存 | ChainPay-Lab schema 和一个无泄漏的 C 小练习 |
@@ -64,44 +64,20 @@ AI Agent 交付标准：工具白名单、输入/输出 schema、超时与重试
 - D29：README、架构图、工具/API 示例、演示脚本与 Docker Compose 验收。
 - D30：全量测试、Agent 评估集 Review、月度复盘和下月 POC 候选。
 
-## 每日 LeetCode 练习（D1-D30，11/01-11/30）
+## 数据结构模板标记
 
-每天完成 1 道 LeetCode，建议 30-45 分钟：先独立思考，再编码、测试并记录题型、复杂度和一个可改进点。题目难度以 Easy/Medium 为主，和当天语言或 POC 主题关联。
+LeetCode 题目和代码继续保存在 LeetCode。项目只维护一个轻量标记，用于确认已经接触过常见数据结构和算法模板，不复制题解。
 
-| 天数 | 题型重点 | 练习方向 |
-| --- | --- | --- |
-| D1 | HashMap | Two Sum、计数与索引映射 |
-| D2 | 链表 | 反转、快慢指针、合并有序链表 |
-| D3 | 滑动窗口 | 无重复字符、最短覆盖区间 |
-| D4 | 双指针 | 有序数组、区间与字符串扫描 |
-| D5 | 栈与队列 | 括号匹配、单调栈、队列模拟 |
-| D6 | 二叉树遍历 | DFS、BFS、层序遍历 |
-| D7 | 周复盘 | 重做 1 道错题并总结复杂度 |
-| D8 | 二分查找 | 边界、旋转数组与答案二分 |
-| D9 | 堆与优先队列 | Top K、合并有序数据 |
-| D10 | 区间 | 合并、重叠检测与扫描线基础 |
-| D11 | 回溯 | 子集、组合、排列 |
-| D12 | BFS/DFS 图 | 网格、连通分量与最短步数 |
-| D13 | 拓扑排序 | 课程表、依赖关系与环检测 |
-| D14 | 周复盘 | 限时完成 1 道 Medium 并复盘 |
-| D15 | 前缀和 | 区间和、子数组计数 |
-| D16 | 差分与扫描 | 区间更新、事件排序 |
-| D17 | 贪心 | 区间选择、跳跃与资源分配 |
-| D18 | 动态规划 | 一维状态、爬楼梯与打家劫舍 |
-| D19 | 动态规划 | 背包、路径和与状态压缩 |
-| D20 | 字符串 | 编辑距离、回文与模式匹配 |
-| D21 | 周复盘 | 总结 DP 状态定义和转移 |
-| D22 | 并查集 | 连通性、冗余连接与账户合并 |
-| D23 | Trie | 前缀搜索、字典与单词拆分 |
-| D24 | 位运算 | 异或、掩码与状态压缩 |
-| D25 | 单调队列 | 滑动窗口最大值与限流队列 |
-| D26 | 设计题 | LRU、缓存、迭代器或数据结构组合 |
-| D27 | 图与最短路 | Dijkstra、网格代价与路径恢复 |
-| D28 | 综合题 | 结合 HashMap、堆或滑动窗口 |
-| D29 | 模拟面试 | 45 分钟完成 1 道 Medium，写出边界测试 |
-| D30 | 月度复盘 | 重做本月错题，整理题型清单和下月 backlog |
+- [ ] 数组、字符串和 HashMap
+- [ ] 链表、栈和队列
+- [ ] 双指针、滑动窗口和前缀和
+- [ ] 二分查找、堆和区间
+- [ ] 二叉树遍历、回溯和图搜索
+- [ ] 拓扑排序、并查集和 Trie
+- [ ] 贪心、动态规划和位运算
+- [ ] LRU、限流队列和其他设计题
 
-LeetCode 练习统一记录在 practice/leetcode/，每题保留题目链接、思路、复杂度、测试用例和复盘笔记。
+每次在 LeetCode 完成一组题目后，只在自己的复盘记录中勾选对应模板，并记下一条复杂度或边界条件。
 
 ## 每日完成定义
 
@@ -110,7 +86,6 @@ LeetCode 练习统一记录在 practice/leetcode/，每题保留题目链接、�
 3. 写下一个决策、一个问题和下一步动作。
 4. 提交一次 Conventional Commit，例如 feat(java): add lru cache eviction。
 5. Agent 相关任务必须保留输入、工具调用、结构化输出和评估结果；禁止默认执行未授权写操作。
-6. 每日完成 1 道 LeetCode，记录题型、复杂度、测试用例和复盘笔记。
 
 ## 月末验收清单
 
@@ -122,9 +97,9 @@ LeetCode 练习统一记录在 practice/leetcode/，每题保留题目链接、�
 - [ ] 重复事件、乱序事件、超时、重试、重组和单边账均有测试。
 - [ ] make dev 能启动本地依赖，make test 能执行核心验证。
 - [ ] README 包含架构图、启动步骤、API 示例、Agent 演示、故障排查和演示脚本。
-- [ ] 30 天至少完成 30 道 LeetCode，并保留可复盘的解题记录。
+- [ ] 完成数据结构模板标记，并为每个模板留下复杂度或边界条件复盘。
 - [ ] 完成一次月度复盘，并将未完成项转入下月 backlog。
 
 ## 推荐目录
 
-practice/ 保存每日练习，practice/ai-agent/ 保存 Agent 原型与评估样例，poc/chainpay-lab/ 保存 POC，poc/chainpay-lab/agent/ 保存 Agent 工具与编排，templates/languages/ 和 templates/infrastructure/ 保存可复制模板，templates/agents/ 保存 Agent 模板，docs/ 保存路线图、架构与复盘。
+practice/language-basics/ 保存共用语法练习，practice/2026-11/ 保存 11 月专项练习，practice/ai-agent/ 保存 Agent 原型与评估样例，poc/chainpay-lab/ 保存 POC，poc/chainpay-lab/agent/ 保存 Agent 工具与编排，templates/languages/ 和 templates/infrastructure/ 保存可复制模板，templates/agents/ 保存 Agent 模板，docs/ 保存路线图、架构与复盘。
