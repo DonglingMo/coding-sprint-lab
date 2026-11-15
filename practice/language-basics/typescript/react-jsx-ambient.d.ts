@@ -3,6 +3,8 @@ declare namespace JSX {
 
   interface IntrinsicElements {
     button: { 'aria-pressed'?: boolean; onClick?: () => void; children?: unknown };
+    form: { onSubmit?: () => void; children?: unknown };
+    input: { value?: string; onChange?: (event: { target: { value: string } }) => void };
     li: { children?: unknown };
     p: { children?: unknown };
     ul: { children?: unknown };
@@ -18,4 +20,8 @@ declare module 'react' {
 
 declare module 'next/link' {
   export default function Link(props: { href: string; children?: unknown }): any;
+}
+
+declare module 'next/navigation' {
+  export function useRouter(): { push: (href: string) => void };
 }
