@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 export type SearchCard = {
   id: string;
   title: string;
@@ -12,6 +14,8 @@ export type SearchListProps = {
 };
 
 export function SearchList({ items, onSelect }: SearchListProps) {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
   if (items.length === 0) {
     return <p>No results</p>;
   }
@@ -20,7 +24,15 @@ export function SearchList({ items, onSelect }: SearchListProps) {
     <ul>
       {items.map((item) => (
         <li key={item.id}>
-          <button onClick={() => onSelect(item)}>{item.title}</button>
+          <button
+            aria-pressed={selectedId === item.id}
+            onClick={() => {
+              setSelectedId(item.id);
+              onSelect(item);
+            }}
+          >
+            {item.title}
+          </button>
         </li>
       ))}
     </ul>
